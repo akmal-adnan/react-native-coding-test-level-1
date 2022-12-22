@@ -1,20 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { View, StyleSheet } from "react-native";
+import ContactScreen from "./src/screens/ContactScreen";
+import MainScreen from "./src/screens/MainScreen";
 
-export default function App() {
+const App = () => {
+  const [screen, setScreen] = useState("main");
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      {screen === "main" ? (
+        <MainScreen setScreen={setScreen} />
+      ) : (
+        <ContactScreen setScreen={setScreen} />
+      )}
     </View>
   );
-}
+};
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
