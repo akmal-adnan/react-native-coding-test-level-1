@@ -2,5 +2,6 @@
   "favoriteColors": ["purple", "blue", "red"],
   "desiredCountry": "Japan",
   "population": 126000000,
-  "visitWithinFiveYears": true
+  "visitWithinFiveYears": true,
+  "favoriteFoods": ["steak", "sushi", "rendang"]
 }
