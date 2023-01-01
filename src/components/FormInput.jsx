@@ -1,7 +1,7 @@
-import React from "react";
-import { StyleSheet, Text, View, TextInput } from "react-native";
+import React from 'react';
+import {Text, View, TextInput} from 'react-native';
 
-const FormInput = ({
+function FormInput({
   containerStyle,
   textInputStyle,
   label,
@@ -11,10 +11,10 @@ const FormInput = ({
   appendComponent,
   onChange,
   secureTextEntry,
-  keyboardType = "default",
-  autoCompleteType = "off",
-  autoCapitalize = "none",
-  errorMsg = "",
+  keyboardType = 'default',
+  autoCompleteType = 'off',
+  autoCapitalize = 'none',
+  errorMsg = '',
   multiline,
   value,
   labelStyle,
@@ -25,24 +25,25 @@ const FormInput = ({
   autoFocus,
   returnKeyType,
   onSubmitEditing,
-}) => {
+}) {
   return (
-    <View style={{ ...containerStyle }}>
+    <View style={{...containerStyle}}>
       {/* Label and error message */}
-      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <Text style={{ ...labelStyle }}>{label}</Text>
-        <Text style={{ color: "red" }}>{errorMsg}</Text>
+      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        <Text style={{...labelStyle}}>{label}</Text>
+        <Text style={{color: 'red'}}>{errorMsg}</Text>
         {charCount ? (
           <Text
             style={{
-              color: "#8EA0AA",
-            }}
-          >{`${charCount}/${maxLength}`}</Text>
+              color: '#8EA0AA',
+            }}>
+            {`${charCount}/${maxLength}`}
+          </Text>
         ) : null}
       </View>
 
       {/* Text Input */}
-      <View style={{ ...textInputStyle }}>
+      <View style={{...textInputStyle}}>
         {prependComponent}
 
         <TextInput
@@ -53,12 +54,12 @@ const FormInput = ({
           scrollEnabled={scrollEnabled}
           multiline={multiline}
           placeholder={placeholder}
-          placeholderTextColor={"#8EA0AA"}
+          placeholderTextColor="#8EA0AA"
           secureTextEntry={secureTextEntry}
           keyboardType={keyboardType}
           autoCompleteType={autoCompleteType}
           autoCapitalize={autoCapitalize}
-          onChangeText={(text) => onChange(text)}
+          onChangeText={text => onChange(text)}
           value={value}
           editable={editable}
           maxLength={maxLength}
@@ -71,8 +72,6 @@ const FormInput = ({
       </View>
     </View>
   );
-};
+}
 
 export default FormInput;
-
-const styles = StyleSheet.create({});
