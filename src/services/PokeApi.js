@@ -6,10 +6,15 @@ export const getRequest = async (path, signal) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    if (error.name === "AbortError") {
-      console.log("Request was aborted");
+    if (error.name === 'AbortError') {
+      console.log('Request was aborted');
     } else {
       console.error(error);
     }
+    return null;
   }
+};
+
+export const postRequest = () => {
+  console.log('test');
 };
