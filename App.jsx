@@ -1,39 +1,56 @@
-import React, {useState} from 'react';
-import {View, StyleSheet} from 'react-native';
-import ContactScreen from './src/screens/ContactScreen';
-import MainScreen from './src/screens/MainScreen';
-import PokemonCatalog from './src/screens/PokemonCatalog';
-import PokemonView from './src/screens/PokemonView';
+import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 
+import {
+  MainScreen,
+  PokemonCatalog,
+  PokemonView,
+  ContactScreen,
+} from './src/screens';
+
+const transitionOptions = {
+  ...TransitionPresets.SlideFromRightIOS,
+};
+
+const Stack = createStackNavigator();
 function App() {
-  const [screen, setScreen] = useState('main');
-  const [pokeId, setPokeId] = useState('');
-
-  const a = 'asss';
-
   return (
-    <View style={styles.container}>
-      {screen === 'main' ? (
-        <MainScreen setScreen={setScreen} />
-      ) : screen === 'contact' ? (
-        <ContactScreen setScreen={setScreen} />
-      ) : screen === 'catalog' ? (
-        <PokemonCatalog setScreen={setScreen} setPokeId={setPokeId} />
-      ) : (
-        <PokemonView
-          setScreen={setScreen}
-          setPokeId={setPokeId}
-          pokeId={pokeId}
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#f4511e',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerTitleAlign: 'center',
+        }}>
+        <Stack.Screen
+          name="MainScreen"
+          component={MainScreen}
+          options={{title: 'Home', ...transitionOptions}}
         />
-      )}
-    </View>
+        <Stack.Screen
+          name="ContactScreen"
+          component={ContactScreen}
+          options={{title: 'Contact', ...transitionOptions}}
+        />
+        <Stack.Screen
+          name="PokemonCatalog"
+          component={PokemonCatalog}
+          options={{title: 'Pokemon List', ...transitionOptions}}
+        />
+        <Stack.Screen
+          name="PokemonView"
+          component={PokemonView}
+          options={{title: 'Pokemon Details', ...transitionOptions}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
 export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});

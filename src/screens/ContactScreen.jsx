@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   Alert,
   Platform,
   Pressable,
@@ -12,7 +11,7 @@ import {
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import FormInput from '../components/FormInput';
 
-function ContactScreen({setScreen}) {
+function ContactScreen() {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -98,7 +97,6 @@ function ContactScreen({setScreen}) {
   return (
     <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
       <Text>Form Screen</Text>
-      <Button title="Go to Main Screen" onPress={() => setScreen('main')} />
 
       <FormInput
         labelStyle={styles.form__label}

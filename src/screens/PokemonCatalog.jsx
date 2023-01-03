@@ -3,14 +3,13 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   FlatList,
   TouchableOpacity,
   SafeAreaView,
 } from 'react-native';
 import {getRequest} from '../services/PokeApi';
 
-function PokemonCatalog({setScreen, setPokeId}) {
+function PokemonCatalog({navigation}) {
   const [dataList, setDataList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
@@ -28,7 +27,6 @@ function PokemonCatalog({setScreen, setPokeId}) {
   const getApi = async signal => {
     setLoading(true);
     const path = `pokemon?limit=10&offset=${page}`;
-
     try {
       const res = await getRequest(path, signal);
       setDataList(res);
@@ -38,13 +36,6 @@ function PokemonCatalog({setScreen, setPokeId}) {
     }
   };
 
-  const renderHeader = () => (
-    <View style={{alignItems: 'center'}}>
-      <Text style={{paddingBottom: 10}}>Pokemon Catalog</Text>
-      <Button title="Go to Main Screen" onPress={() => setScreen('main')} />
-    </View>
-  );
-
   const renderCard = ({item}) => (
     <View style={styles.card__container}>
       <Text style={styles.pokemon__name}>{item.name}</Text>
@@ -52,7 +43,7 @@ function PokemonCatalog({setScreen, setPokeId}) {
       <TouchableOpacity
         style={styles.view__button}
         onPress={() => {
-          setScreen('ViewPokemon'), setPokeId(item.name);
+          navigation.navigate('PokemonView', {pokeId: item.name});
         }}>
         <Text style={{fontSize: 16, color: 'white'}}>View</Text>
       </TouchableOpacity>
@@ -84,16 +75,15 @@ function PokemonCatalog({setScreen, setPokeId}) {
 
   return (
     <SafeAreaView style={styles.main__container}>
-      {renderHeader()}
-      {renderPagination()}
-
       <FlatList
         data={dataList?.results}
         style={{paddingHorizontal: 10}}
-        contentContainerStyle={{paddingTop: 15, paddingBottom: 100}}
+        contentContainerStyle={{paddingTop: 15, paddingBottom: 50}}
         keyExtractor={item => `${item.url}`}
         renderItem={renderCard}
         numColumns={2}
+        ListFooterComponent={renderPagination}
+        ListFooterComponentStyle={{paddingTop: 20}}
       />
     </SafeAreaView>
   );

@@ -1,17 +1,17 @@
 import React from 'react';
 import {StyleSheet, Text, View, Pressable} from 'react-native';
 
-function MainScreen({setScreen}) {
+function MainScreen({navigation}) {
   return (
     <View style={styles.container}>
       <Pressable
-        onPress={() => setScreen('contact')}
+        onPress={() => navigation.navigate('ContactScreen')}
         style={({pressed}) => styles.contact__button(pressed)}>
         <Text style={{fontSize: 16}}>Contact Us</Text>
       </Pressable>
 
       <Pressable
-        onPress={() => setScreen('catalog')}
+        onPress={() => navigation.navigate('PokemonCatalog')}
         style={({pressed}) => styles.catalog__button(pressed)}>
         <Text style={{fontSize: 16}}>View Catalog</Text>
       </Pressable>
@@ -24,7 +24,7 @@ export default MainScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
