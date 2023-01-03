@@ -9,8 +9,6 @@ function App() {
   const [screen, setScreen] = useState('main');
   const [pokeId, setPokeId] = useState('');
 
-  const a = 'asss';
-
   return (
     <View style={styles.container}>
       {screen === 'main' ? (
